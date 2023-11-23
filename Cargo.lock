@@ -316,9 +316,9 @@ checksum = "a4668cab20f66d8d020e1fbc0ebe47217433c1b6c8f2040faf858554e394ace6"
 
 [[package]]
 name = "arbitrary"
-version = "1.0.3"
+version = "1.3.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "510c76ecefdceada737ea728f4f9a84bd2e1ef29f1ba555e560940fe279954de"
+checksum = "7d5a26814d8dcb93b0e5a0ff3c6d80a8843bafb21b39e8e18a6f05471870e110"
 dependencies = [
  "derive_arbitrary",
 ]
@@ -352,7 +352,7 @@ dependencies = [
  "ark-std",
  "derivative",
  "hashbrown 0.13.2",
- "itertools",
+ "itertools 0.10.5",
  "num-traits",
  "zeroize",
 ]
@@ -369,7 +369,7 @@ dependencies = [
  "ark-std",
  "derivative",
  "digest 0.10.7",
- "itertools",
+ "itertools 0.10.5",
  "num-bigint 0.4.4",
  "num-traits",
  "paste",
@@ -522,8 +522,21 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "81953c529336010edd6d8e358f886d9581267795c61b19475b71314bffa46d35"
 dependencies = [
  "concurrent-queue",
- "event-listener",
+ "event-listener 2.5.3",
  "futures-core",
+]
+
+[[package]]
+name = "async-channel"
+version = "2.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d37875bd9915b7d67c2f117ea2c30a0989874d0b2cb694fe25403c85763c0c9e"
+dependencies = [
+ "concurrent-queue",
+ "event-listener 3.1.0",
+ "event-listener-strategy",
+ "futures-core",
+ "pin-project-lite",
 ]
 
 [[package]]
@@ -546,7 +559,7 @@ version = "1.4.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "479db852db25d9dbf6204e6cb6253698f175c15726470f78af0d918e99d6156e"
 dependencies = [
- "event-listener",
+ "event-listener 2.5.3",
 ]
 
 [[package]]
@@ -1560,9 +1573,9 @@ dependencies = [
 
 [[package]]
 name = "dirs"
-version = "4.0.0"
+version = "5.0.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "ca3aa72a6f96ea37bbc5aa912f6788242832f75369bdfdadcb0e38423f100059"
+checksum = "44c45a9d03d6676652bcb5e724c7e988de1acad23a711b5217ab9cbecbec2225"
 dependencies = [
  "dirs-sys",
 ]
@@ -1579,13 +1592,14 @@ dependencies = [
 
 [[package]]
 name = "dirs-sys"
-version = "0.3.7"
+version = "0.4.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "1b1d1d91c932ef41c0f2663aa8b0ca0342d444d842c06914aa0a7e352d0bada6"
+checksum = "520f05a5cbd335fae5a99ff7a6ab8627577660ee5cfd6a94a6a929b52ff0321c"
 dependencies = [
  "libc",
+ "option-ext",
  "redox_users",
- "winapi 0.3.9",
+ "windows-sys 0.48.0",
 ]
 
 [[package]]
@@ -1760,6 +1774,19 @@ dependencies = [
 ]
 
 [[package]]
+name = "env_logger"
+version = "0.10.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "95b3f3e67048839cb0d0781f445682a35113da7121f7c949db0e2be96a4fbece"
+dependencies = [
+ "humantime",
+ "is-terminal",
+ "log 0.4.20",
+ "regex",
+ "termcolor",
+]
+
+[[package]]
 name = "equivalent"
 version = "1.0.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1780,6 +1807,27 @@ name = "event-listener"
 version = "2.5.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "0206175f82b8d6bf6652ff7d71a1e27fd2e4efde587fd368662814d6ec1d9ce0"
+
+[[package]]
+name = "event-listener"
+version = "3.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d93877bcde0eb80ca09131a08d23f0a5c18a620b01db137dba666d18cd9b30c2"
+dependencies = [
+ "concurrent-queue",
+ "parking",
+ "pin-project-lite",
+]
+
+[[package]]
+name = "event-listener-strategy"
+version = "0.3.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d96b852f1345da36d551b9473fa1e2b1eb5c5195585c6c018118bc92a8d91160"
+dependencies = [
+ "event-listener 3.1.0",
+ "pin-project-lite",
+]
 
 [[package]]
 name = "fast-math"
@@ -2545,10 +2593,30 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "8f518f335dce6725a761382244631d86cf0ccb2863413590b31338feb467f9c3"
 
 [[package]]
+name = "is-terminal"
+version = "0.4.9"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "cb0889898416213fab133e1d33a0e5858a48177452750691bde3666d0fdbaf8b"
+dependencies = [
+ "hermit-abi 0.3.3",
+ "rustix",
+ "windows-sys 0.48.0",
+]
+
+[[package]]
 name = "itertools"
 version = "0.10.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "b0fd2260e829bddf4cb6ea802289de2f86d6a7a690192fbe91b3f46e0f2c8473"
+dependencies = [
+ "either",
+]
+
+[[package]]
+name = "itertools"
+version = "0.12.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "25db6b064527c5d482d0423354fcd07a89a2dfe07b67892e62411946db7f07b0"
 dependencies = [
  "either",
 ]
@@ -2685,12 +2753,12 @@ dependencies = [
 
 [[package]]
 name = "jupiter-amm-interface"
-version = "0.1.1"
+version = "0.3.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "a0a07d892e79ae4ad8f0947f30633188269287967ceb0b2c182f894745f49952"
+checksum = "bad613279e534eba2c9d95ef6f2d2c7e170f6647ce50216301741ed3e73a79bb"
 dependencies = [
  "anyhow",
- "borsh 0.9.3",
+ "borsh 0.10.3",
  "rust_decimal",
  "serde",
  "serde_json",
@@ -3469,16 +3537,16 @@ dependencies = [
  "arbitrary",
  "arrayref",
  "async-trait",
- "base64 0.13.1",
+ "base64 0.21.5",
  "bytemuck",
  "derivative",
- "env_logger",
+ "env_logger 0.10.1",
  "fixed",
- "itertools",
+ "itertools 0.12.0",
  "lazy_static",
  "log 0.4.20",
  "num 0.4.1",
- "num_enum 0.5.11",
+ "num_enum 0.7.1",
  "pyth-sdk-solana",
  "rand 0.8.5",
  "raydium-amm-v3",
@@ -3487,8 +3555,8 @@ dependencies = [
  "solana-program-test",
  "solana-sdk",
  "solana-security-txt",
- "spl-associated-token-account 1.1.3",
- "spl-token 3.5.0",
+ "spl-associated-token-account 2.2.0",
+ "spl-token 4.0.0",
  "static_assertions",
  "switchboard-program",
  "switchboard-v2",
@@ -3502,14 +3570,14 @@ dependencies = [
  "anchor-lang",
  "anchor-spl",
  "anyhow",
- "async-channel",
+ "async-channel 2.1.0",
  "async-once-cell",
  "async-trait",
- "base64 0.13.1",
+ "base64 0.21.5",
  "bincode",
  "fixed",
  "futures 0.3.29",
- "itertools",
+ "itertools 0.12.0",
  "jsonrpc-core",
  "jsonrpc-core-client",
  "jupiter-amm-interface",
@@ -3526,7 +3594,7 @@ dependencies = [
  "solana-rpc-client",
  "solana-rpc-client-api",
  "solana-sdk",
- "spl-associated-token-account 1.1.3",
+ "spl-associated-token-account 2.2.0",
  "thiserror",
  "tokio",
  "tokio-stream",
@@ -3606,6 +3674,12 @@ dependencies = [
 ]
 
 [[package]]
+name = "option-ext"
+version = "0.2.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "04744f49eae99ab78e0d5c0b603ab218f515ea8cfe5a456d7629ad883a3b6e7d"
+
+[[package]]
 name = "os_str_bytes"
 version = "6.6.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -3633,6 +3707,12 @@ dependencies = [
  "quote 1.0.33",
  "syn 1.0.109",
 ]
+
+[[package]]
+name = "parking"
+version = "2.2.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "bb813b8af86854136c6922af0598d719255ecb2179515e6e7730d468f05c9cae"
 
 [[package]]
 name = "parking_lot"
@@ -3971,7 +4051,7 @@ checksum = "119533552c9a7ffacc21e099c24a0ac8bb19c2a2a3f363de84cd9b844feab270"
 dependencies = [
  "bytes 1.5.0",
  "heck 0.4.1",
- "itertools",
+ "itertools 0.10.5",
  "lazy_static",
  "log 0.4.20",
  "multimap",
@@ -3992,7 +4072,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "e5d2d8d10f3c6ded6da8b05b5fb3b8a5082514344d56c9f871412d29b4e075b4"
 dependencies = [
  "anyhow",
- "itertools",
+ "itertools 0.10.5",
  "proc-macro2 1.0.69",
  "quote 1.0.33",
  "syn 1.0.109",
@@ -5080,9 +5160,9 @@ checksum = "24188a676b6ae68c3b2cb3a01be17fbf7240ce009799bb56d5b1409051e78fde"
 
 [[package]]
 name = "shellexpand"
-version = "2.1.2"
+version = "3.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "7ccc8076840c4da029af4f87e4e8daeb0fca6b87bbb02e10cb60b791450e11e4"
+checksum = "da03fa3b94cc19e3ebfc88c4229c49d8f08cdbd1228870a45f0ffdf84988e14b"
 dependencies = [
  "dirs",
 ]
@@ -5553,7 +5633,7 @@ dependencies = [
  "crossbeam-channel",
  "flate2",
  "indexmap 1.9.3",
- "itertools",
+ "itertools 0.10.5",
  "log 0.4.20",
  "lru",
  "matches",
@@ -5605,7 +5685,7 @@ dependencies = [
  "dashmap",
  "fs_extra",
  "futures 0.3.29",
- "itertools",
+ "itertools 0.10.5",
  "lazy_static",
  "libc",
  "log 0.4.20",
@@ -5670,7 +5750,7 @@ version = "1.16.20"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "0278658cd4fb5405932452bf20f7df496ce8b9e9cf66a7d1c621bbe3b01fe297"
 dependencies = [
- "env_logger",
+ "env_logger 0.9.3",
  "lazy_static",
  "log 0.4.20",
 ]
@@ -5802,7 +5882,7 @@ dependencies = [
  "console_log",
  "curve25519-dalek",
  "getrandom 0.2.11",
- "itertools",
+ "itertools 0.10.5",
  "js-sys",
  "lazy_static",
  "libc",
@@ -5842,7 +5922,7 @@ dependencies = [
  "bincode",
  "eager",
  "enum-iterator",
- "itertools",
+ "itertools 0.10.5",
  "libc",
  "log 0.4.20",
  "num-derive 0.3.3",
@@ -5921,7 +6001,7 @@ dependencies = [
  "async-mutex",
  "async-trait",
  "futures 0.3.29",
- "itertools",
+ "itertools 0.10.5",
  "lazy_static",
  "log 0.4.20",
  "quinn",
@@ -5980,7 +6060,7 @@ dependencies = [
  "bs58 0.4.0",
  "crossbeam-channel",
  "dashmap",
- "itertools",
+ "itertools 0.10.5",
  "jsonrpc-core",
  "jsonrpc-core-client",
  "jsonrpc-derive",
@@ -6105,7 +6185,7 @@ dependencies = [
  "fnv",
  "im",
  "index_list",
- "itertools",
+ "itertools 0.10.5",
  "lazy_static",
  "log 0.4.20",
  "lru",
@@ -6175,7 +6255,7 @@ dependencies = [
  "ed25519-dalek-bip32",
  "generic-array",
  "hmac 0.12.1",
- "itertools",
+ "itertools 0.10.5",
  "js-sys",
  "lazy_static",
  "libsecp256k1",
@@ -6314,13 +6394,13 @@ version = "1.16.20"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "ca0cac530e3248c7b43306c867e238aad555a9ed89095f0e37a5fef64ff0520e"
 dependencies = [
- "async-channel",
+ "async-channel 1.9.0",
  "bytes 1.5.0",
  "crossbeam-channel",
  "futures-util",
  "histogram",
  "indexmap 1.9.3",
- "itertools",
+ "itertools 0.10.5",
  "libc",
  "log 0.4.20",
  "nix",
@@ -6502,7 +6582,7 @@ dependencies = [
  "byteorder",
  "curve25519-dalek",
  "getrandom 0.1.16",
- "itertools",
+ "itertools 0.10.5",
  "lazy_static",
  "merlin",
  "num-derive 0.3.3",
